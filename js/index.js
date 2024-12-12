@@ -1606,17 +1606,12 @@ Play again to beat your score!
     this.mesh.castShadow = true;
   };
 
-  // Thêm biến để lưu thông tin người dùng Telegram
   let tgUser = null;
 
-  // Thêm hàm khởi tạo Telegram WebApp
   function initTelegramWebApp() {
-    // Kiểm tra xem telegram webapp có khả dụng không
     if (window.Telegram && window.Telegram.WebApp) {
-      // Lấy thông tin người dùng
       tgUser = window.Telegram.WebApp.initDataUnsafe.user;
 
-      // Hiển thị thông tin người dùng nếu có
       if (tgUser) {
         const userInfo = document.createElement("div");
         userInfo.innerHTML = `Player: ${tgUser.first_name}`;
