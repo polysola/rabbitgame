@@ -650,6 +650,7 @@
     this.earR = this.earL.clone();
     this.earR.position.x = -this.earL.position.x;
     this.earR.rotation.z = -this.earL.rotation.z;
+    this.earR.castShadow = true;
     this.head.add(this.earR);
 
     var eyeGeom = new THREE.CubeGeometry(2, 4, 4);
@@ -1140,29 +1141,6 @@
     monsterPos += (monsterPosTarget - monsterPos) * delta;
     if (monsterPos < 0.56) {
       gameOver();
-
-      // try {
-      //   // Fetch transaction details
-
-      //   const address = await window.martian.address;
-
-      //   let cloudDB = firebase.firestore();
-
-      //   cloudDB
-      //     .collection(`Database`)
-      //     .doc(address)
-      //     .set({
-      //       Score: ponits,
-      //     })
-      //     .then(function () {
-      //       console.log("Document written with ID", address);
-      //     })
-      //     .catch(function (err) {
-      //       console.log("Err", err);
-      //     });
-      // } catch (error) {
-      //   alert(`Please install Martian Wallet `);
-      // }
     }
 
     var angle = Math.PI * monsterPos;
@@ -1172,7 +1150,7 @@
     monster.mesh.rotation.z = -Math.PI / 2 + angle;
   }
 
-  function gameOver() {
+  async function gameOver() {
     fieldGameOver.className = "show";
     gameStatus = "gameOver";
     monster.sit();
@@ -1183,6 +1161,36 @@
     carrot.mesh.visible = false;
     obstacle.mesh.visible = false;
     clearInterval(levelInterval);
+
+    // Lấy thông tin người chơi từ Telegram WebApp
+    const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
+
+    // Gửi kết quả về bot Telegram
+    try {
+      const score = Math.floor(distance / 2);
+      const message = `
+🎮 Game Over!
+👤 Player: ${tgUser ? tgUser.first_name : "Anonymous"}
+🏆 Score: ${score}
+      `;
+
+      await fetch(
+        "https://api.telegram.org/bot7809998690:AAE6_mtOZwqrxxsGKqIUK0OgbhzUq9Le_7o/sendMessage",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            chat_id: "1245498043",
+            text: message,
+            parse_mode: "HTML",
+          }),
+        }
+      );
+    } catch (error) {
+      console.error("Error sending score:", error);
+    }
   }
 
   function replay() {
@@ -1426,6 +1434,7 @@
   window.addEventListener("load", init, false);
 
   function init(event) {
+    initTelegramWebApp();
     initUI();
     initScreenAnd3D();
     createLights();
@@ -1568,4 +1577,27 @@
 
     this.mesh.castShadow = true;
   };
+
+  // Thêm biến để lưu thông tin người dùng Telegram
+  let tgUser = null;
+
+  // Thêm hàm khởi tạo Telegram WebApp
+  function initTelegramWebApp() {
+    // Kiểm tra xem telegram webapp có khả dụng không
+    if (window.Telegram && window.Telegram.WebApp) {
+      // Lấy thông tin người dùng
+      tgUser = window.Telegram.WebApp.initDataUnsafe.user;
+
+      // Hiển thị thông tin người dùng nếu có
+      if (tgUser) {
+        const userInfo = document.createElement("div");
+        userInfo.innerHTML = `Player: ${tgUser.first_name}`;
+        userInfo.style.position = "absolute";
+        userInfo.style.top = "10px";
+        userInfo.style.left = "10px";
+        userInfo.style.color = "white";
+        document.body.appendChild(userInfo);
+      }
+    }
+  }
 })();
