@@ -1151,10 +1151,14 @@
   }
 
   async function gameOver() {
+    // Kiểm tra nếu đã gọi gameOver rồi thì return
     if (gameStatus === "gameOver") return;
 
-    fieldGameOver.className = "show";
+    // Set game status trước
     gameStatus = "gameOver";
+
+    // UI updates
+    fieldGameOver.className = "show";
     monster.sit();
     hero.hang();
     monster.heroHolder.add(hero.mesh);
@@ -1164,10 +1168,12 @@
     obstacle.mesh.visible = false;
     clearInterval(levelInterval);
 
+    // Lấy thông tin user từ Telegram WebApp
     const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
 
     if (tgUser) {
       try {
+        // Tính điểm và tạo message
         const score = Math.floor(distance);
         const message = `
 <b>🎮 GAME OVER!</b>
@@ -1179,21 +1185,49 @@
 <i>Play again to beat your score!</i>
         `;
 
+        // Log để debug
+        console.log("Sending score:", score);
+        console.log("User:", tgUser);
+
+        // Gửi message với photo
         const formData = new FormData();
         formData.append("chat_id", "1245498043");
         formData.append("photo", tgUser.photo_url);
         formData.append("caption", message);
         formData.append("parse_mode", "HTML");
 
-        await fetch(
+        const response = await fetch(
           "https://api.telegram.org/bot7809998690:AAE6_mtOZwqrxxsGKqIUK0OgbhzUq9Le_7o/sendPhoto",
           {
             method: "POST",
             body: formData,
           }
         );
+
+        // Log response để debug
+        const result = await response.json();
+        console.log("Telegram API response:", result);
       } catch (error) {
         console.error("Error sending score:", error);
+        // Thử gửi lại bằng sendMessage nếu sendPhoto thất bại
+        try {
+          await fetch(
+            "https://api.telegram.org/bot7809998690:AAE6_mtOZwqrxxsGKqIUK0OgbhzUq9Le_7o/sendMessage",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                chat_id: "1245498043",
+                text: message,
+                parse_mode: "HTML",
+              }),
+            }
+          );
+        } catch (err) {
+          console.error("Error sending fallback message:", err);
+        }
       }
     }
   }
