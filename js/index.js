@@ -1203,31 +1203,39 @@
     try {
       const score = Math.floor(distance);
 
-      // Kiểm tra điểm số trước khi thực hiện bất kỳ thao tác nào
       if (score <= 0) {
         console.log("Score is 0 or less, skipping notifications and save");
         return;
       }
 
-      // Sử dụng thông tin từ currentUser
       const docId = currentUser.id
         ? currentUser.id.toString()
         : `web_${Date.now()}`;
       const userRef = db.collection("Database").doc(docId);
 
-      const userData = {
-        Username: currentUser.username,
-        Score: score,
-        Level: level,
-        LastPlayed: firebase.firestore.FieldValue.serverTimestamp(),
-        Platform: currentUser.platform,
-        TelegramID: currentUser.id,
-      };
+      try {
+        const doc = await userRef.get();
+        const currentHighScore = doc.exists ? doc.data().Score : 0;
 
-      await userRef.set(userData, { merge: true });
-      console.log("Score saved successfully for:", currentUser.username);
+        if (!doc.exists || score > currentHighScore) {
+          const userData = {
+            Username: currentUser.username,
+            Score: score,
+            Level: level,
+            LastPlayed: firebase.firestore.FieldValue.serverTimestamp(),
+            Platform: currentUser.platform,
+            TelegramID: currentUser.id,
+          };
 
-      // Gửi thông báo
+          await userRef.set(userData, { merge: true });
+          console.log("New high score saved for:", currentUser.username);
+        } else {
+          console.log("Score not saved - lower than current high score");
+        }
+      } catch (error) {
+        console.error("Error saving score:", error);
+      }
+
       const message = `
 🎮 GAME OVER!
 
