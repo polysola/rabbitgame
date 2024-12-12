@@ -1165,22 +1165,32 @@
     obstacle.mesh.visible = false;
     clearInterval(levelInterval);
 
-    const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
-    const score = Math.floor(distance);
-
     try {
+      // Lấy thông tin user từ Telegram WebApp
+      const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
+      const score = Math.floor(distance);
+
+      // Debug log để kiểm tra user info
+      console.log("Telegram User Data:", tgUser);
+
+      // Tạo user data
       const userData = {
-        Username: tgUser ? tgUser.first_name : "User On Web",
+        Username: tgUser?.username || tgUser?.first_name || "User On Web",
         Score: score,
         Level: level,
         LastPlayed: firebase.firestore.FieldValue.serverTimestamp(),
         Platform: tgUser ? "Telegram" : "Web",
+        TelegramID: tgUser?.id || null,
       };
 
-      const docId = tgUser ? tgUser.id.toString() : `web_${Date.now()}`;
+      // Tạo document ID
+      const docId = tgUser?.id ? tgUser.id.toString() : `web_${Date.now()}`;
 
-      console.log("Saving score for:", userData.Username);
-      console.log("Score to save:", score);
+      console.log("Saving data:", {
+        docId,
+        userData,
+        isTelegramUser: !!tgUser,
+      });
 
       const userRef = db.collection("Database").doc(docId);
 
