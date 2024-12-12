@@ -1661,14 +1661,109 @@ Play again to beat your score!
       };
 
       if (tgUser) {
+        // const userInfo = document.createElement("div");
+        // userInfo.innerHTML = `Player: ${tgUser.first_name}`;
+        // userInfo.style.position = "absolute";
+        // userInfo.style.top = "10px";
+        // userInfo.style.right = "10px";
+        // userInfo.style.color = "#dc5f45";
+        // userInfo.style.fontFamily = "Voltaire";
+        // document.body.appendChild(userInfo);
+        // Kiểm tra môi trường và lấy thông tin user
+        let username = "User";
+        let firstChar = "U";
+
+        // Kiểm tra xem có phải là Telegram Mini App không
+        if (window.Telegram && window.Telegram.WebApp) {
+          const tg = window.Telegram.WebApp;
+          if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+            const user = tg.initDataUnsafe.user;
+            username = user.username || user.first_name || "User";
+            firstChar = username.charAt(0).toUpperCase();
+          }
+        }
+
         const userInfo = document.createElement("div");
-        userInfo.innerHTML = `Player: ${tgUser.first_name}`;
-        userInfo.style.position = "absolute";
-        userInfo.style.top = "10px";
-        userInfo.style.right = "10px";
-        userInfo.style.color = "#dc5f45";
-        userInfo.style.fontFamily = "Voltaire";
+        userInfo.innerHTML = `
+  <div class="player-tag">
+    <div class="avatar-container">${firstChar}</div>
+    <span>${username}</span>
+  </div>
+`;
+
+        const styles = `
+  .player-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 8px 15px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Voltaire', sans-serif;
+    color: #dc5f45;
+    font-size: 16px;
+    backdrop-filter: blur(5px);
+    border: 2px solid rgba(220, 95, 69, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    z-index: 1000;
+  }
+
+  .avatar-container {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #dc5f45;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    border: 2px solid rgba(220, 95, 69, 0.3);
+  }
+
+  .player-tag span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
+  }
+
+  @media (max-width: 480px) {
+    .player-tag {
+      padding: 6px 12px;
+      font-size: 14px;
+    }
+    .avatar-container {
+      width: 20px;
+      height: 20px;
+      font-size: 12px;
+    }
+  }
+`;
+
+        // Thêm styles vào document
+        const styleSheet = document.createElement("style");
+        styleSheet.innerText = styles;
+        document.head.appendChild(styleSheet);
+
+        // Thêm user info vào document
         document.body.appendChild(userInfo);
+
+        // Điều chỉnh vị trí nếu là Telegram Mini App và đang mở rộng
+        if (
+          window.Telegram &&
+          window.Telegram.WebApp &&
+          window.Telegram.WebApp.isExpanded
+        ) {
+          userInfo.style.top = window.Telegram.WebApp.headerColor
+            ? "40px"
+            : "10px";
+        }
       }
     }
   }
