@@ -1662,15 +1662,4 @@ Play again to beat your score!
       }
     }
   }
-
-  document.addEventListener("DOMContentLoaded", function () {
-    if (window.Telegram?.WebApp) {
-      console.log("Telegram WebApp found, initializing...");
-      window.Telegram.WebApp.ready();
-      console.log(
-        "WebApp user data:",
-        window.Telegram.WebApp.initDataUnsafe?.user
-      );
-    }
-  });
 })();
