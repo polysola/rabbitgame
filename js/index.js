@@ -1151,6 +1151,8 @@
   }
 
   async function gameOver() {
+    if (gameStatus === "gameOver") return;
+
     fieldGameOver.className = "show";
     gameStatus = "gameOver";
     monster.sit();
@@ -1162,34 +1164,37 @@
     obstacle.mesh.visible = false;
     clearInterval(levelInterval);
 
-    // Lấy thông tin người chơi từ Telegram WebApp
     const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
 
-    // Gửi kết quả về bot Telegram
-    try {
-      const score = Math.floor(distance / 2);
-      const message = `
-🎮 Game Over!
-👤 Player: ${tgUser ? tgUser.first_name : "Anonymous"}
-🏆 Score: ${score}
-      `;
+    if (tgUser) {
+      try {
+        const score = Math.floor(distance);
+        const message = `
+<b>🎮 GAME OVER!</b>
 
-      await fetch(
-        "https://api.telegram.org/bot7809998690:AAE6_mtOZwqrxxsGKqIUK0OgbhzUq9Le_7o/sendMessage",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            chat_id: "1245498043",
-            text: message,
-            parse_mode: "HTML",
-          }),
-        }
-      );
-    } catch (error) {
-      console.error("Error sending score:", error);
+👤 <b>Player:</b> <a href="tg://user?id=${tgUser.id}">${tgUser.first_name}</a>
+🏆 <b>Score:</b> ${score} points
+🌟 <b>Level:</b> ${level}
+
+<i>Play again to beat your score!</i>
+        `;
+
+        const formData = new FormData();
+        formData.append("chat_id", "1245498043");
+        formData.append("photo", tgUser.photo_url);
+        formData.append("caption", message);
+        formData.append("parse_mode", "HTML");
+
+        await fetch(
+          "https://api.telegram.org/bot7809998690:AAE6_mtOZwqrxxsGKqIUK0OgbhzUq9Le_7o/sendPhoto",
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+      } catch (error) {
+        console.error("Error sending score:", error);
+      }
     }
   }
 
