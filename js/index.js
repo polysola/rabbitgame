@@ -1672,6 +1672,7 @@ Play again to beat your score!
         // Kiểm tra môi trường và lấy thông tin user
         let username = "User";
         let firstChar = "U";
+        let photoUrl = null;
 
         // Kiểm tra xem có phải là Telegram Mini App không
         if (window.Telegram && window.Telegram.WebApp) {
@@ -1680,13 +1681,18 @@ Play again to beat your score!
             const user = tg.initDataUnsafe.user;
             username = user.username || user.first_name || "User";
             firstChar = username.charAt(0).toUpperCase();
+            photoUrl = user.photo_url; // Lấy URL ảnh đại diện
           }
         }
 
         const userInfo = document.createElement("div");
         userInfo.innerHTML = `
   <div class="player-tag">
-    <div class="avatar-container">${firstChar}</div>
+    ${
+      photoUrl
+        ? `<img src="${photoUrl}" class="avatar-container" alt="${username}" />`
+        : `<div class="avatar-container">${firstChar}</div>`
+    }
     <span>${username}</span>
   </div>
 `;
@@ -1716,6 +1722,12 @@ Play again to beat your score!
     width: 24px;
     height: 24px;
     border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(220, 95, 69, 0.3);
+  }
+
+  /* Style cho avatar khi không có ảnh */
+  div.avatar-container {
     background-color: #dc5f45;
     color: white;
     display: flex;
@@ -1723,7 +1735,6 @@ Play again to beat your score!
     justify-content: center;
     font-size: 14px;
     font-weight: bold;
-    border: 2px solid rgba(220, 95, 69, 0.3);
   }
 
   .player-tag span {
@@ -1741,6 +1752,8 @@ Play again to beat your score!
     .avatar-container {
       width: 20px;
       height: 20px;
+    }
+    div.avatar-container {
       font-size: 12px;
     }
   }
