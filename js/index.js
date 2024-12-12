@@ -1150,6 +1150,42 @@
     monster.mesh.rotation.z = -Math.PI / 2 + angle;
   }
 
+  // Thêm biến global để lưu thông tin user
+  let currentUser = {
+    username: "User On Web",
+    platform: "Web",
+    id: null,
+  };
+
+  // Hàm khởi tạo để lấy thông tin user
+  function initUser() {
+    const tg = window.Telegram?.WebApp;
+    if (tg) {
+      const tgUser = tg.initDataUnsafe?.user;
+      if (tgUser) {
+        currentUser = {
+          username: tgUser.first_name || tgUser.username || "Telegram User",
+          platform: "Telegram",
+          id: tgUser.id,
+        };
+        console.log("Telegram user detected:", currentUser);
+      }
+    }
+
+    // Hiển thị thông tin user trên UI
+    const userInfoDiv = document.createElement("div");
+    userInfoDiv.id = "userInfo";
+    userInfoDiv.style.position = "absolute";
+    userInfoDiv.style.top = "10px";
+    userInfoDiv.style.left = "10px";
+    userInfoDiv.style.color = "white";
+    userInfoDiv.style.fontFamily = "Arial";
+    userInfoDiv.style.fontSize = "14px";
+    userInfoDiv.style.zIndex = "1000";
+    userInfoDiv.innerHTML = `Player: ${currentUser.username}`;
+    document.body.appendChild(userInfoDiv);
+  }
+
   async function gameOver() {
     if (gameStatus === "gameOver") return;
     gameStatus = "gameOver";
@@ -1166,48 +1202,40 @@
     clearInterval(levelInterval);
 
     try {
-      // Lấy thông tin user từ Telegram WebApp
-      const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
       const score = Math.floor(distance);
 
-      // Debug log để kiểm tra user info
-      console.log("Telegram User Data:", tgUser);
+      // Kiểm tra điểm số trước khi thực hiện bất kỳ thao tác nào
+      if (score <= 0) {
+        console.log("Score is 0 or less, skipping notifications and save");
+        return;
+      }
 
-      // Tạo user data
+      // Sử dụng thông tin từ currentUser
+      const docId = currentUser.id
+        ? currentUser.id.toString()
+        : `web_${Date.now()}`;
+      const userRef = db.collection("Database").doc(docId);
+
       const userData = {
-        Username: tgUser?.username || tgUser?.first_name || "User On Web",
+        Username: currentUser.username,
         Score: score,
         Level: level,
         LastPlayed: firebase.firestore.FieldValue.serverTimestamp(),
-        Platform: tgUser ? "Telegram" : "Web",
-        TelegramID: tgUser?.id || null,
+        Platform: currentUser.platform,
+        TelegramID: currentUser.id,
       };
 
-      // Tạo document ID
-      const docId = tgUser?.id ? tgUser.id.toString() : `web_${Date.now()}`;
+      await userRef.set(userData, { merge: true });
+      console.log("Score saved successfully for:", currentUser.username);
 
-      console.log("Saving data:", {
-        docId,
-        userData,
-        isTelegramUser: !!tgUser,
-      });
-
-      const userRef = db.collection("Database").doc(docId);
-
-      try {
-        await userRef.set(userData, { merge: true });
-        console.log("Score saved successfully");
-      } catch (fbError) {
-        console.error("Firebase save error:", fbError);
-      }
-
+      // Gửi thông báo
       const message = `
 🎮 GAME OVER!
 
-👤 Player: ${userData.Username}
+👤 Player: ${currentUser.username}
 🏆 Score: ${score}
 🌟 Level: ${level}
-🌐 Platform: ${userData.Platform}
+🌐 Platform: ${currentUser.platform}
 
 Play again to beat your score!
       `;
@@ -1472,6 +1500,7 @@ Play again to beat your score!
   window.addEventListener("load", init, false);
 
   function init(event) {
+    initUser();
     initTelegramWebApp();
     initUI();
     initScreenAnd3D();
