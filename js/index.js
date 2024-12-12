@@ -1139,11 +1139,8 @@
     monster.run();
     monsterPosTarget -= delta * monsterAcceleration;
     monsterPos += (monsterPosTarget - monsterPos) * delta;
-
-    // Kiểm tra điều kiện game over
     if (monsterPos < 0.56) {
-      await gameOver();
-      return;
+      gameOver();
     }
 
     var angle = Math.PI * monsterPos;
@@ -1154,10 +1151,7 @@
   }
 
   async function gameOver() {
-    // Kiểm tra nếu đã gọi gameOver rồi thì return
     if (gameStatus === "gameOver") return;
-
-    // Set game status trước
     gameStatus = "gameOver";
 
     // UI updates
@@ -1171,81 +1165,59 @@
     obstacle.mesh.visible = false;
     clearInterval(levelInterval);
 
-    // Lấy thông tin user từ Telegram WebApp
     const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
-    console.log("Telegram User:", tgUser); // Debug log
+    const score = Math.floor(distance);
 
-    if (tgUser) {
+    try {
+      const userData = {
+        Username: tgUser ? tgUser.first_name : "User On Web",
+        Score: score,
+        Level: level,
+        LastPlayed: firebase.firestore.FieldValue.serverTimestamp(),
+        Platform: tgUser ? "Telegram" : "Web",
+      };
+
+      const docId = tgUser ? tgUser.id.toString() : `web_${Date.now()}`;
+
+      console.log("Saving score for:", userData.Username);
+      console.log("Score to save:", score);
+
+      const userRef = db.collection("Database").doc(docId);
+
       try {
-        // Tính điểm và tạo message
-        const score = Math.floor(distance);
-        console.log("Score:", score); // Debug log
-
-        const message = `
-<b>🎮 GAME OVER!</b>
-
-👤 <b>Player:</b> <a href="tg://user?id=${tgUser.id}">${tgUser.first_name}</a>
-🏆 <b>Score:</b> ${score} points
-🌟 <b>Level:</b> ${level}
-
-<i>Play again to beat your score!</i>
-        `;
-
-        // Nếu có photo_url thì gửi kèm ảnh
-        if (tgUser.photo_url) {
-          const formData = new FormData();
-          formData.append("chat_id", "1245498043");
-          formData.append("photo", tgUser.photo_url);
-          formData.append("caption", message);
-          formData.append("parse_mode", "HTML");
-
-          const photoResponse = await fetch(
-            "https://api.telegram.org/bot7809998690:AAE6_mtOZwqrxxsGKqIUK0OgbhzUq9Le_7o/sendPhoto",
-            {
-              method: "POST",
-              body: formData,
-            }
-          );
-          console.log("Photo API Response:", await photoResponse.json()); // Debug log
-        } else {
-          // Nếu không có ảnh thì gửi text message
-          const messageResponse = await fetch(
-            "https://api.telegram.org/bot7809998690:AAE6_mtOZwqrxxsGKqIUK0OgbhzUq9Le_7o/sendMessage",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                chat_id: "1245498043",
-                text: message,
-                parse_mode: "HTML",
-              }),
-            }
-          );
-          console.log("Message API Response:", await messageResponse.json()); // Debug log
-        }
-      } catch (error) {
-        console.error("Error in gameOver:", error); // Error log
-        // Thử gửi tin nhắn đơn giản nếu có lỗi
-        try {
-          await fetch(
-            "https://api.telegram.org/bot7809998690:AAE6_mtOZwqrxxsGKqIUK0OgbhzUq9Le_7o/sendMessage",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                chat_id: "1245498043",
-                text: `Game Over! Score: ${Math.floor(distance)}`,
-              }),
-            }
-          );
-        } catch (err) {
-          console.error("Error sending fallback message:", err);
-        }
+        await userRef.set(userData, { merge: true });
+        console.log("Score saved successfully");
+      } catch (fbError) {
+        console.error("Firebase save error:", fbError);
       }
+
+      const message = `
+🎮 GAME OVER!
+
+👤 Player: ${userData.Username}
+🏆 Score: ${score}
+🌟 Level: ${level}
+🌐 Platform: ${userData.Platform}
+
+Play again to beat your score!
+      `;
+
+      const response = await fetch(
+        "https://api.telegram.org/bot7809998690:AAE6_mtOZwqrxxsGKqIUK0OgbhzUq9Le_7o/sendMessage",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            chat_id: "1245498043",
+            text: message,
+          }),
+        }
+      );
+      console.log("API Response:", await response.json());
+    } catch (error) {
+      console.error("Error in gameOver:", error);
     }
   }
 
