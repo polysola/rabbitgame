@@ -1139,8 +1139,11 @@
     monster.run();
     monsterPosTarget -= delta * monsterAcceleration;
     monsterPos += (monsterPosTarget - monsterPos) * delta;
+
+    // Kiểm tra điều kiện game over
     if (monsterPos < 0.56) {
-      gameOver();
+      await gameOver();
+      return;
     }
 
     var angle = Math.PI * monsterPos;
@@ -1170,11 +1173,14 @@
 
     // Lấy thông tin user từ Telegram WebApp
     const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
+    console.log("Telegram User:", tgUser); // Debug log
 
     if (tgUser) {
       try {
         // Tính điểm và tạo message
         const score = Math.floor(distance);
+        console.log("Score:", score); // Debug log
+
         const message = `
 <b>🎮 GAME OVER!</b>
 
@@ -1185,33 +1191,25 @@
 <i>Play again to beat your score!</i>
         `;
 
-        // Log để debug
-        console.log("Sending score:", score);
-        console.log("User:", tgUser);
+        // Nếu có photo_url thì gửi kèm ảnh
+        if (tgUser.photo_url) {
+          const formData = new FormData();
+          formData.append("chat_id", "1245498043");
+          formData.append("photo", tgUser.photo_url);
+          formData.append("caption", message);
+          formData.append("parse_mode", "HTML");
 
-        // Gửi message với photo
-        const formData = new FormData();
-        formData.append("chat_id", "1245498043");
-        formData.append("photo", tgUser.photo_url);
-        formData.append("caption", message);
-        formData.append("parse_mode", "HTML");
-
-        const response = await fetch(
-          "https://api.telegram.org/bot7809998690:AAE6_mtOZwqrxxsGKqIUK0OgbhzUq9Le_7o/sendPhoto",
-          {
-            method: "POST",
-            body: formData,
-          }
-        );
-
-        // Log response để debug
-        const result = await response.json();
-        console.log("Telegram API response:", result);
-      } catch (error) {
-        console.error("Error sending score:", error);
-        // Thử gửi lại bằng sendMessage nếu sendPhoto thất bại
-        try {
-          await fetch(
+          const photoResponse = await fetch(
+            "https://api.telegram.org/bot7809998690:AAE6_mtOZwqrxxsGKqIUK0OgbhzUq9Le_7o/sendPhoto",
+            {
+              method: "POST",
+              body: formData,
+            }
+          );
+          console.log("Photo API Response:", await photoResponse.json()); // Debug log
+        } else {
+          // Nếu không có ảnh thì gửi text message
+          const messageResponse = await fetch(
             "https://api.telegram.org/bot7809998690:AAE6_mtOZwqrxxsGKqIUK0OgbhzUq9Le_7o/sendMessage",
             {
               method: "POST",
@@ -1222,6 +1220,25 @@
                 chat_id: "1245498043",
                 text: message,
                 parse_mode: "HTML",
+              }),
+            }
+          );
+          console.log("Message API Response:", await messageResponse.json()); // Debug log
+        }
+      } catch (error) {
+        console.error("Error in gameOver:", error); // Error log
+        // Thử gửi tin nhắn đơn giản nếu có lỗi
+        try {
+          await fetch(
+            "https://api.telegram.org/bot7809998690:AAE6_mtOZwqrxxsGKqIUK0OgbhzUq9Le_7o/sendMessage",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                chat_id: "1245498043",
+                text: `Game Over! Score: ${Math.floor(distance)}`,
               }),
             }
           );
