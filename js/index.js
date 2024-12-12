@@ -1656,15 +1656,18 @@ Play again to beat your score!
 
   function initTelegramWebApp() {
     if (window.Telegram && window.Telegram.WebApp) {
-      tgUser = window.Telegram.WebApp.initDataUnsafe.user;
+      tgUser = window.Telegram.WebApp.initDataUnsafe.user || {
+        first_name: "User On Web",
+      };
 
       if (tgUser) {
         const userInfo = document.createElement("div");
         userInfo.innerHTML = `Player: ${tgUser.first_name}`;
         userInfo.style.position = "absolute";
         userInfo.style.top = "10px";
-        userInfo.style.left = "10px";
-        userInfo.style.color = "white";
+        userInfo.style.right = "10px";
+        userInfo.style.color = "#dc5f45";
+        userInfo.style.fontFamily = "Voltaire";
         document.body.appendChild(userInfo);
       }
     }

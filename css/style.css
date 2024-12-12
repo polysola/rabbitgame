@@ -155,9 +155,10 @@ body {
 
 @media (max-width: 768px) {
   #logo {
-    position: inherit;
+    position: fixed;
     text-align: center;
-    margin: 20px 0;
+    margin: 8px 0;
+    left: 8px;
   }
 
   #logo img {
