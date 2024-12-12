@@ -1182,7 +1182,6 @@
     userInfoDiv.style.fontFamily = "Arial";
     userInfoDiv.style.fontSize = "14px";
     userInfoDiv.style.zIndex = "1000";
-    userInfoDiv.innerHTML = `Player: ${currentUser.username}`;
     document.body.appendChild(userInfoDiv);
   }
 
